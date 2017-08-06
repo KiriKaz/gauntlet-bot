@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/KiriKaz/gauntlet-bot#readme",
   "dependencies": {
+    "bufferutil": "^3.0.2",
     "discord.js": "^11.1.0"
   }
 }
