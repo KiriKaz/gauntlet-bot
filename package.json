@@ -1,7 +1,7 @@
 {
   "name": "gauntlet-bot",
-  "version": "0.0.1",
-  "description": "A Discord bot for The Gauntlet",
+  "version": "1.0.0",
+  "description": "Discord bot for The Gauntlet",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/KiriKaz/gauntlet-bot.git"
   },
-  "author": "CeceAragorn and lsfonseca",
+  "author": "CeceAragorn and lsfonseca1",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/KiriKaz/gauntlet-bot/issues"
