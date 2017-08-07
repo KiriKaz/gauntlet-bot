@@ -1,4 +1,4 @@
-# gauntlet-bot
-Discord Bot made for The Gauntlet.
+# Gauntlet Bot
+Discord Bot made for [The Gauntlet](https://youareanidiot.org).
 
-This is a test commit.
+
