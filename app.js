@@ -13,18 +13,16 @@ client.on('message', message => {
   if (message.author.bot) { return; } // Compatibilidade com outros bots. Se algum bot disser !ping não fará nada
   console.log("Mensagem com prefix vista!");
 
-  var lowerMessage = message.content; // may be redundant
-  var lowerMessage = lowerMessage.toLowerCase();
-  var command = lowerMessage.slice(1); // removes prefix since we already know it's there
-
-  // write code to support arguments using string split into an array & check amount of arguments so it works
-  // index 0 will be command, if command expects argument(s) check other indexes
+  var command = message.content.slice(1); // removes prefix since we already know it's there
+  var args = command.split(" "); // splits the command in  array of arguments
+  args[0]=args[0].toLowerCase()
+  
 
   // probably want to rewrite this switch statement it's kind of hard to make arguments in commands using a switch statement
   // but if you don't want to do args in commands keep using this because it's far better code than using the clunky if statements
 
   //note to self if (message.member.roles.has(lv.roles.dev))
-  switch (command){
+  switch (args[0]){
     case "ping":
       console.log(`Ping sent at ${Date.now()}`);
       message.reply(`Pong! I'm at: \`${Date.now() - message.createdTimestamp}ms\``);
@@ -37,12 +35,14 @@ client.on('message', message => {
       console.log(`Date sent at ${Date.now()}`);
       message.channel.send(`Current time and date is \`${new Date()}\`.`);
       break;
-    case lv.passwords.l0l1:
-      message.author.send(`You have passed to the next level.`);
-      message.guild.channels.find("id", lv.rooms.dev).send(`${message.author.username} just passed his level by sending \`${message.content}\`.`);
-      message.delete();
-      message.member.addRole(lv.roles.l1);
-      message.member.removeRole(lv.roles.l0);
+    case "password":
+      if(args[1]=lv.passwords.l0l1) {
+        message.author.send(`You have passed to the next level.`);
+        message.guild.channels.find("id", lv.rooms.dev).send(`${message.author.username} just passed his level by sending \`${message.content}\`.`);
+        message.delete();
+        message.member.addRole(lv.roles.l1);
+        message.member.removeRole(lv.roles.l0);
+     } else { break; }
   }
 });
 
