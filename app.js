@@ -34,6 +34,7 @@ client.on('message', message => {
     case "date":
       console.log(`Date sent at ${Date.now()}`);
       message.channel.send(`Current time and date is \`${new Date()}\`.`);
+  }
 });
 
 client.login(settings.token);
