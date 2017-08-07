@@ -35,7 +35,7 @@ client.on('message', message => {
       message.channel.send(`Current time and date is \`${new Date()}\`.`);
       break;
     case "password":
-      if(args[1]=lv.passwords.l0l1) {
+      if(args[1] == lv.passwords.l0l1) {
         message.author.send(`You have passed to the next level.`);
         message.guild.channels.find("id", lv.rooms.dev).send(`${message.author.username} just passed his level by sending \`${message.content}\`.`);
         message.delete();
