@@ -22,6 +22,8 @@ client.on('message', message => {
 
   // probably want to rewrite this switch statement it's kind of hard to make arguments in commands using a switch statement
   // but if you don't want to do args in commands keep using this because it's far better code than using the clunky if statements
+
+  //note to self if (message.member.roles.has(lv.roles.dev))
   switch (command){
     case "ping":
       console.log(`Ping sent at ${Date.now()}`);
@@ -29,11 +31,18 @@ client.on('message', message => {
       break;
     case "unix":
       console.log(`Unix sent at ${Date.now()}`);
-      message.channel.send(`Ponged: \`${Date.now()}\`ms!`);
+      message.channel.send(`Unix is: \`${Date.now()}\`!`);
       break;
     case "date":
       console.log(`Date sent at ${Date.now()}`);
       message.channel.send(`Current time and date is \`${new Date()}\`.`);
+      break;
+    case lv.passwords.l0l1:
+      message.author.send(`You have passed to the next level.`);
+      message.guild.channels.find("id", lv.rooms.dev).send(`${message.author.username} just passed his level by sending \`${message.content}\`.`);
+      message.delete();
+      message.member.addRole(lv.roles.l1);
+      message.member.removeRole(lv.roles.l0);
   }
 });
 
