@@ -15,8 +15,7 @@ client.on('message', message => {
 
   var command = message.content.slice(1); // removes prefix since we already know it's there
   var args = command.split(" "); // splits the command in  array of arguments
-  args[0]=args[0].toLowerCase()
-  
+  args[0]=args[0].toLowerCase();
 
   // probably want to rewrite this switch statement it's kind of hard to make arguments in commands using a switch statement
   // but if you don't want to do args in commands keep using this because it's far better code than using the clunky if statements
@@ -42,6 +41,7 @@ client.on('message', message => {
         message.delete();
         message.member.addRole(lv.roles.l1);
         message.member.removeRole(lv.roles.l0);
+        break;
      } else { break; }
   }
 });
