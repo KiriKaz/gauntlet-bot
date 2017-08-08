@@ -15,7 +15,7 @@ client.on('ready', () => {
 client.on('message', message => {
   if (!message.content.startsWith(prefix)) { return; } // Caso a mensagem não é um comando, ignore. Provávelmente retiraremos isso para a senha funcionar direito.
   if (message.author.bot) { return; } // Compatibilidade com outros bots. Se algum bot disser !ping não fará nada
-  console.log("Mensagem com prefix vista!");
+  console.log("A wild prefix has appeared!");
 
   var command = message.content.slice(1); // removes prefix since we already know it's there
   sorted = command.match(strpattern);
