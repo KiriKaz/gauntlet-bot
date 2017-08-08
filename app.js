@@ -20,7 +20,7 @@ client.on('message', message => {
   var command = message.content.slice(1); // removes prefix since we already know it's there
   sorted = command.match(strpattern);
   sorted[0] = sorted[0].toLowerCase();
-  message.guild.channels.find("id", room.dev).send(sorted);
+  console.log(sorted);
 
 
 
@@ -39,7 +39,7 @@ client.on('message', message => {
       message.channel.send(`Current time and date is \`${new Date()}\`.`);
       break;
     case "password":
-      if(!args[1]) {
+      if(!sorted[1]) {
         message.reply("You have to include the password!");
         return;
       }
