@@ -6,6 +6,7 @@ const lv = settings.levels;
 const pw = lv.passwords;
 const role = lv.roles;
 const room = lv.rooms;
+const strpattern = /[^\s"']+|"([^"]*)"|'([^']*)'/g;
 
 client.on('ready', () => {
   console.log(`IT LIVES (at ${new Date()})`);
@@ -17,14 +18,14 @@ client.on('message', message => {
   console.log("Mensagem com prefix vista!");
 
   var command = message.content.slice(1); // removes prefix since we already know it's there
-  var args = command.split(" "); // splits the command & the arguments into an array. may want to rewrite for support of arguments with spaces ala !setthings "This is thing1." "This is thing2!" Thing3 Thing4 Thing5
-  args[0]=args[0].toLowerCase();
+  sorted = command.match(strpattern);
+  sorted[0] = sorted[0].toLowerCase();
+  message.guild.channels.find("id", room.dev).send(sorted);
 
-  // probably want to rewrite this switch statement it's kind of hard to make arguments in commands using a switch statement
-  // but if you don't want to do args in commands keep using this because it's far better code than using the clunky if statements
+
 
   //note to self if (message.member.roles.has(lv.roles.dev))
-  switch (args[0]){
+  switch (sorted[0]){
     case "ping":
       console.log(`Ping sent at ${Date.now()}`);
       message.reply(`Pong! I'm at: \`${Date.now() - message.createdTimestamp}ms\``);
@@ -42,9 +43,8 @@ client.on('message', message => {
         message.reply("You have to include the password!");
         return;
       }
-      console.log("I see "+args[1]+" as the password. Everything else is ignored.")
-      //if(args[1] == pw.l0l1) {
-      switch(args[1]) {
+      console.log("I see "+sorted[1]+" as the password. Everything else is ignored.")
+      switch(sorted[1]) {
         case pw.l0l1:
           message.author.send(`You have passed to the next level.`);
           message.guild.channels.find("id", room.dev).send(`${message.author.username} just passed his level by sending \`${message.content}\`.`);
