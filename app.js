@@ -17,9 +17,8 @@ client.on('message', message => {
   if (message.author.bot) { return; } // Compatibilidade com outros bots. Se algum bot disser !ping não fará nada
   console.log("A wild prefix has appeared!");
 
-  var command = message.content.slice(1); // removes prefix since we already know it's there
-  sorted = command.match(strpattern);
-  sorted[0] = sorted[0].toLowerCase();
+  sorted = message.content.match(strpattern);
+  sorted[0] = sorted[0].toLowerCase().slice(1); //removes the prefix
   console.log(sorted);
 
 
