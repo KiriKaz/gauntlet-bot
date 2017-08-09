@@ -41,7 +41,8 @@
     },
 
     "passwords": {
-      "l0l1":"password123"
+      "l0l1":"password123",
+      "l1l2":"letmein"
     }
 
   }
