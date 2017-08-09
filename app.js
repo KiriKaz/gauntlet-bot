@@ -9,27 +9,15 @@ const room = lv.rooms;
 const strpattern = /[^\s"']+|"([^"]*)"|'([^']*)'/g;
 
 function getPw(password,message) {
-  message.guild.channels.find("id",room.dev).send(`getPw called`);
-  for (var key in pw) {
-    message.guild.channels.find("id",room.dev).send(`for var key in pw - \`for var ${key} in ${pw}\``);
-    if (pw.hasOwnProperty(key)) {
-      message.guild.channels.find("id",room.dev).send(`if pw.hasOwnProperty(key)`);
-      if (password == pw[key] && message.member.roles.has(lv.roles[key.substring(0,2)])) {
-        message.guild.channels.find("id",room.dev).send(`if password==pw[key]&&blabla`);
-        console.log(key + " --> " + pw[key]);
-
-        message.author.send(`You have passed to the next level.`);
-        message.guild.channels.find("id", room.dev).send(`${message.author.username} just passed from level ${key.substring(1,2)} to ${key.substring(3,4)} level by sending \`${message.content}\`.`);
-        console.log(`${message.author.username} just passed from level ${key.substring(1,2)} to ${key.substring(3,4)} level by sending \`${message.content}\`.`)
-        message.delete();
-        message.member.addRole(lv.roles[key.substring(2,4)]);
-        message.member.removeRole(lv.roles[key.substring(0,2)]);
-      } else {
-        message.author.send(`\`${password}\` is wrong, please try again`);
-        message.delete();
-        message.guild.channels.find("id",room.dev).send(`else ran`);
-      }
-    }
+  if (message.channel.type != "dm") {
+    message.reply('please send that command only on a direct message to me');
+    message.delete();
+  } else if (!password) {
+    message.reply("You have to include the password!");
+  } else {
+    
+    //Check the password
+    
   }
 }
 
@@ -46,7 +34,7 @@ client.on('message', message => {
   sorted = message.content.match(strpattern);
   sorted[0] = sorted[0].toLowerCase().slice(1); //removes the prefix
   console.log(sorted);
-
+  
   //note to self if (message.member.roles.has(lv.roles.dev))
   switch (sorted[0]){
     case "ping":
@@ -66,11 +54,6 @@ client.on('message', message => {
       message.channel.send('Thanks for donating!\nBitcoin: http://imgur.com/DW8BZDc');
       break;
     case "password":
-
-      if(!sorted[1]) {
-        message.reply("You have to include the password!");
-        return;
-      }
       console.log("I see "+sorted[1]+" as the password. Everything else is ignored.")
       getPw(sorted[1],message);
   }
