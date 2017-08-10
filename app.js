@@ -8,20 +8,28 @@ const role = lv.roles;
 const room = lv.rooms;
 const strpattern = /[^\s"']+|"([^"]*)"|'([^']*)'/g;
 
-var guild;
-
 function getPw(password,message) {
-  if (message.channel.type != "dm") {
-    message.reply('please send that command only on a direct message to me');
-    message.delete();
-  } else if (!password) {
-    message.reply("You have to include the password!");
-  } else if (!guild){
-    message.reply("In the moment, I can't proceed your request. Please, ask a staff member to set the bot up");
-  }else { 
+  for (var key in pw) {
     
-    console.log("Checking the password");
-    console.log(guild.members);
+    if (pw.hasOwnProperty(key)) {
+        
+      if (password == pw[key] && message.member.roles.has(role[key.substring(0,2)]) && message.guild.channel.id == room[key.substring(0,2)]) {
+        
+        console.log(key + " --> " + pw[key]);
+        
+        message.author.send(`You have passed to the next level.`);
+        message.guild.channels.find("id", room.dev).send(`${message.author.username} just passed from level ${key.substring(1,2)} to ${key.substring(3,4)} level by sending \`${message.content}\`.`);
+        console.log(`${message.author.username} just passed from level ${key.substring(1,2)} to ${key.substring(3,4)} level by sending \`${message.content}\`.`)
+        message.delete();
+        message.member.addRole(role[key.substring(2,4)]);
+        message.member.removeRole(role[key.substring(0,2)]);
+      } else if(message.guild.channel.id == room[key.substring(0,2)])){
+        message.author.send(`\`${password}\` is wrong, please try again`);
+        message.delete();
+      } else {
+        message.delete();
+      }
+    }
   }
 }
 
@@ -39,21 +47,11 @@ client.on('message', message => {
   sorted[0] = sorted[0].toLowerCase().slice(1); //removes the prefix
   console.log(sorted);
   
-  //note to self if (message.member.roles.has(lv.roles.dev))
+  //note to self if (message.member.roles.has(role.dev))
   switch (sorted[0]){
     case "ping":
       console.log(`Ping sent at ${Date.now()}`);
       message.reply(`Pong! I'm at: \`${Date.now() - message.createdTimestamp}ms\``);
-      break;
-    case "setup":
-      if (message.member.roles.has(lv.roles.dev) && !guild){
-        guild = message.guild
-        message.channel.send(`Setup was completed`);
-        
-      }else if (message.member.roles.has(lv.roles.dev)) {
-         message.channel.send(`Setup was already completed`);
-      }
-      console.log(guild.members);
       break;
     case "unix":
       console.log(`Unix sent at ${Date.now()}`);
@@ -68,6 +66,11 @@ client.on('message', message => {
       message.channel.send('Thanks for donating!\nBitcoin: http://imgur.com/DW8BZDc');
       break;
     case "password":
+
+      if(!sorted[1]) {
+        message.reply("You have to include the password!");
+        return;
+      }
       console.log("I see "+sorted[1]+" as the password. Everything else is ignored.")
       getPw(sorted[1],message);
   }
