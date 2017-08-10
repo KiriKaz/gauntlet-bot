@@ -13,24 +13,25 @@ function getPw(password,message) {
     
     if (pw.hasOwnProperty(key)) {
         
-      if (password == pw[key] && message.member.roles.has(role[key.substring(0,2)]) && message.guild.channel.id == room[key.substring(0,2)]) {
+      if (password == pw[key] && message.member.roles.has(role[key.substring(0,2)]) && message.channel.id == room[key.substring(0,2)]) {
         
         console.log(key + " --> " + pw[key]);
         
         message.author.send(`You have passed to the next level.`);
         message.guild.channels.find("id", room.dev).send(`${message.author.username} just passed from level ${key.substring(1,2)} to ${key.substring(3,4)} level by sending \`${message.content}\`.`);
         console.log(`${message.author.username} just passed from level ${key.substring(1,2)} to ${key.substring(3,4)} level by sending \`${message.content}\`.`)
-        message.delete();
         message.member.addRole(role[key.substring(2,4)]);
         message.member.removeRole(role[key.substring(0,2)]);
-      } else if(message.guild.channel.id == room[key.substring(0,2)])){
+        message.delete();
+        return;
+      } else if(message.channel.id == room[key.substring(0,2)]){
         message.author.send(`\`${password}\` is wrong, please try again`);
         message.delete();
-      } else {
-        message.delete();
+        return;
       }
     }
   }
+  message.delete();
 }
 
 
