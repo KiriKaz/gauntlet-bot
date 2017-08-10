@@ -16,7 +16,9 @@ function getPw(password,message) {
     message.reply("You have to include the password!");
   } else {
     
-    //Check the password
+    console.log("Checking the password")
+    
+    
     
   }
 }
