@@ -8,18 +8,20 @@ const role = lv.roles;
 const room = lv.rooms;
 const strpattern = /[^\s"']+|"([^"]*)"|'([^']*)'/g;
 
+var guild;
+
 function getPw(password,message) {
   if (message.channel.type != "dm") {
     message.reply('please send that command only on a direct message to me');
     message.delete();
   } else if (!password) {
     message.reply("You have to include the password!");
-  } else {
+  } else if (!guild){
+    message.reply("In the moment, I can't proceed your request. Please, ask a staff member to set the bot up");
+  }else { 
     
-    console.log("Checking the password")
-    
-    
-    
+    console.log("Checking the password");
+    console.log(guild.members);
   }
 }
 
@@ -42,6 +44,16 @@ client.on('message', message => {
     case "ping":
       console.log(`Ping sent at ${Date.now()}`);
       message.reply(`Pong! I'm at: \`${Date.now() - message.createdTimestamp}ms\``);
+      break;
+    case "setup":
+      if (message.member.roles.has(lv.roles.dev) && !guild){
+        guild = message.guild
+        message.channel.send(`Setup was completed`);
+        
+      }else if (message.member.roles.has(lv.roles.dev)) {
+         message.channel.send(`Setup was already completed`);
+      }
+      console.log(guild.members);
       break;
     case "unix":
       console.log(`Unix sent at ${Date.now()}`);
