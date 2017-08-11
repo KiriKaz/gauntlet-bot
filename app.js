@@ -6,6 +6,7 @@ const lv = settings.levels;
 const pw = lv.passwords;
 const role = lv.roles;
 const room = lv.rooms;
+const embed = settings.embeds;
 const strpattern = /[^\s"']+|"([^"]*)"|'([^']*)'/g;
 
 function getPw(password,message) {
@@ -34,7 +35,6 @@ function getPw(password,message) {
   message.delete();
 }
 
-
 client.on('ready', () => {
   console.log(`IT LIVES (at ${new Date()})`);
 });
@@ -46,35 +46,40 @@ client.on('message', message => {
 
   sorted = message.content.match(strpattern);
   sorted[0] = sorted[0].toLowerCase().slice(1); //removes the prefix
-  console.log(sorted);
   
   //note to self if (message.member.roles.has(role.dev))
   switch (sorted[0]){
     case "ping":
-      console.log(`Ping sent at ${Date.now()}`);
+      console.log(`Ping received at ${Date.now()}`);
       message.reply(`Pong! I'm at: \`${Date.now() - message.createdTimestamp}ms\``);
       break;
     case "unix":
-      console.log(`Unix sent at ${Date.now()}`);
+      console.log(`Unix received at ${Date.now()}`);
       message.channel.send(`Unix is: \`${Date.now()}\`!`);
       break;
     case "date":
-      console.log(`Date sent at ${Date.now()}`);
+      console.log(`Date received at ${Date.now()}`);
       message.channel.send(`Current time and date is \`${new Date()}\`.`);
       break;
     case "donate":
-      console.log('Donate sent at ${Date.now()}');
+      console.log('Donate received at ${Date.now()}');
       message.channel.send('Thanks for donating!\nBitcoin: http://imgur.com/DW8BZDc');
       break;
     case "password":
-
+      console.log(`Password received at ${Date.now()}`);
       if(!sorted[1]) {
         message.reply("You have to include the password!");
         return;
       }
       console.log("I see "+sorted[1]+" as the password. Everything else is ignored.")
       getPw(sorted[1],message);
-  }
+      break;
+    case "level":
+      console.log(`Level received at ${Date.now()}`);
+      if(embed[message.channel.id] != undefined) {
+        message.channel.send(embed[message.channel.id]);
+      }
+    }
 });
 
 client.login(settings.token);

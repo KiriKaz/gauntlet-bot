@@ -45,5 +45,79 @@
       "l1l2":"letmein"
     }
 
+  },
+  "embeds": {
+    "343805163355504660":{
+      "embed": {
+        "title": "Level 0",
+        "color": 16777215,
+        "fields": [
+          {
+            "name": "The beggining of a journey",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus dui nisl, a laoreet orci cursus ut. Maecenas sagittis finibus auctor. "
+          }
+        ]
+      }
+    },
+    "343805224882012181":{
+      "embed": {
+        "title": "Level 1",
+        "color": 16777164,
+        "fields": [
+          {
+            "name": "The first of them all",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus dui nisl, a laoreet orci cursus ut. Maecenas sagittis finibus auctor. "
+          }
+        ]
+      }
+    },
+    "343812967034519554":{
+      "embed": {
+        "title": "Level 2",
+        "color": 16777113,
+        "fields": [
+          {
+            "name": "Third time's a char... Wait, this is only level 2",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus dui nisl, a laoreet orci cursus ut. Maecenas sagittis finibus auctor. "
+          }
+        ]
+      }
+    },
+    "343812980728659969":{
+      "embed": {
+        "title": "Level 3",
+        "color": 16764057,
+        "fields": [
+          {
+            "name": "Ok, this time is level 3 so: Third time's a charm",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus dui nisl, a laoreet orci cursus ut. Maecenas sagittis finibus auctor. "
+          }
+        ]
+      }
+    },
+    "343812993655504896":{
+      "embed": {
+        "title": "Level 4",
+        "color": 16751001,
+        "fields": [
+          {
+            "name": "I didn't think of more titles",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus dui nisl, a laoreet orci cursus ut. Maecenas sagittis finibus auctor. "
+          }
+        ]
+      }
+    },
+    "343813000962244629":{
+      "embed": {
+        "title": "Level 5",
+        "color": 16751052,
+        "fields": [
+          {
+            "name": "This is the end (of the embeds (for now (I will make more soon (I promise!))))",
+            "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin faucibus dui nisl, a laoreet orci cursus ut. Maecenas sagittis finibus auctor. "
+          }
+        ]
+      }
+    }
   }
 }
