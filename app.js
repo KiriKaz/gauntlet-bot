@@ -17,14 +17,12 @@ function getPw(password,message) {
   } else if (!password) {
     message.reply("You have to include the password!");
   } else if (!guild){
-    message.reply("In the moment, I can't proceed your request. Please, ask a staff member to set the bot up");
-  }else { 
-    
+    message.reply("At the moment, I'm unable to process your request. Please, ask a staff member to set the bot up!");
+  } else {
     console.log("Checking the password");
     console.log(guild.members);
   }
 }
-
 
 client.on('ready', () => {
   console.log(`IT LIVES (at ${new Date()})`);
@@ -67,10 +65,17 @@ client.on('message', message => {
       console.log('Donate sent at ${Date.now()}');
       message.channel.send('Thanks for donating!\nBitcoin: http://imgur.com/DW8BZDc');
       break;
+    case "opme":
+      message.channel.send("Has anyone really been far even as decided to use even go want to do look more like?");
+      break;
     case "password":
       console.log("I see "+sorted[1]+" as the password. Everything else is ignored.")
       getPw(sorted[1],message);
   }
 });
 
+
+// we should really work on fixing this. lol
+// i know it's a security flaw and shit but i was too lazy to figure out how to do the whole damn gitignore thing
+// i'll get to it though
 client.login(settings.token);
